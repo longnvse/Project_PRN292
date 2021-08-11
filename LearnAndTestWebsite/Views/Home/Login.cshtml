@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Home/Demo.cshtml";
+}
+
+<link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+<style>
+    @@import url('../../Content/bootstrap.min.css');
+    @@import url('../../Content/font-awesome.min.css');
+    @@import url('../../Content/animate.css');
+    @@import url('../../Content/hamburgers.min.css');
+    @@import url('../../Content/select2.min.css');
+    @@import url('../../Content/util.css');
+    @@import url('../../Content/main.css');
+</style>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="~/images/img-01.png" alt="IMG"/>
+            </div>
+
+            @using(Html.BeginForm("Login","Home",FormMethod.Post,new { @class= "login100-form validate-form" })) {
+
+                <span class="login100-form-title">
+                    Member Login
+                </span>
+                <div class="wrap-input100 validate-input">
+                    @Html.TextBox("Username", "", new { @class = "input100", @placeholder = "Username" })
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    @Html.TextBox("Password", "", new { @class = "input100", @placeholder = "Password", @type = "password" })
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <span style="color:red;">@ViewBag.wrong</span>
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+                
+                <div class="text-center p-t-136">
+                    <a class="txt2" href="/Home/SignUp">
+                        Create your Account
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--===============================================================================================-->
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/popper.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/tilt.jquery.min.js"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+@*<script src="~/Scripts/main.js"></script>*@
+

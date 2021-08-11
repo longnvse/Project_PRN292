@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+    Layout = "~/Views/Home/Demo.cshtml";
+}
+
+<div class="w3-col l10 m12" id="main">
+    <div id="mainLeaderboard" style="overflow:hidden;">
+        <!-- MainLeaderboard-->
+        <!--<pre>main_leaderboard, all: [728,90][970,90][320,50][468,60]</pre>-->
+        <div id="snhb-main_leaderboard-0"></div>
+        <!-- adspace leaderboard -->
+
+    </div>
+
+    <h1>@ViewBag.lessname Quiz</h1>
+
+    <div id="quizmain">
+        <div id="quizcontainer">
+            <div class="w3-large" style="text-align:center">
+                <h1>Result:</h1>
+                @ViewBag.count of @ViewBag.totalQuestion<p><b>@ViewBag.result%</b></p>
+                <p>@ViewBag.resultName</p>
+            </div>
+
+            @*<form role="form" target="_blank" action="ViewResult" method="post" style="text-align:center">
+                    <input type="hidden" name="answers" value="0322120123223433400010231222314113434323">
+                    <input type="submit" class="ws-btn quizresultbtn"
+                           onclick="location = 'ViewResult'" value="Check your answers">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <input type="button" class="w3-btn w3-round w3-blue quizresultbtn"
+                           value="Try Again" onclick="location='Test?lessid=@ViewBag.lid'">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <input hidden name="lesid" value="@ViewBag.lid">
+                    <input type="button" class="ws-btn quizresultbtn" value="Back to Quizzes"
+                           onclick="location = 'DetailViewCourse?lessid=@ViewBag.lid'">
+                    <br>
+                </form>*@
+            @using (Html.BeginForm("ViewResult", "Home", FormMethod.Post))
+            {
+                <div style="text-align:center">
+                    <input type="hidden" name="answers" value="0322120123223433400010231222314113434323">
+                    <input type="submit" class="ws-btn quizresultbtn"
+                           onclick="location = 'ViewResult'" value="Check your answers">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <input type="button" class="w3-btn w3-round w3-blue quizresultbtn"
+                           value="Try Again" onclick="location='Test?lessid=@ViewBag.lid'">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <br class="w3-hide-large w3-hide-medium">
+                    <input hidden name="lesid" value="@ViewBag.lid">
+                    <input type="button" class="ws-btn quizresultbtn" value="Back to Quizzes"
+                           onclick="location = 'DetailViewCourse?lessid=@ViewBag.lid'">
+                    <br>
+                </div>
+            }
+
+        </div>
+    </div>
+    <hr>
+    <style>
+
+
+        #w3_cert_badge {
+            position: absolute;
+            right: 5%;
+            width: 220px;
+            transform: rotate(10deg);
+            bottom: -20%;
+        }
+
+        #w3_cert_arrow {
+            position: absolute;
+            right: 220px;
+            width: 220px;
+            transform: rotate(10deg);
+            bottom: 0;
+            z-index: 1;
+        }
+
+        #getdiploma {
+            position: relative;
+            padding: 0 60px 50px 60px;
+            margin-bottom: 125px;
+            border-radius: 16px;
+            background-color: #282A35;
+            color: #FFC0C7;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+            #getdiploma h2 {
+                font-size: 50px;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                font-family: 'Source Sans Pro', sans-serif
+            }
+
+            #getdiploma p {
+                font-size: 42px;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                font-family: 'Source Sans Pro', sans-serif
+            }
+
+            #getdiploma a {
+                border-radius: 50px;
+                margin-top: 50px;
+                font-size: 18px;
+                background-color: #04AA6D;
+                padding: 17px 55px
+            }
+
+                #getdiploma a:hover,
+                #getdiploma a:active {
+                    background-color: #059862 !important;
+                }
+
+        @@media screen and (max-width: 1442px) {
+            #w3_cert_arrow {
+                right: 212px;
+                bottom: -15px;
+            }
+        }
+
+
+        @@media screen and (max-width: 1202px) {
+            #w3_cert_arrow {
+                display: none;
+            }
+        }
+
+        @@media screen and (max-width: 992px) {
+            #w3_cert_arrow {
+                display: block;
+            }
+        }
+
+
+        @@media screen and (max-width: 800px) {
+            #w3_cert_arrow {
+                display: none;
+            }
+
+            #getdiploma h2 {
+                font-size: 44px;
+            }
+
+            #getdiploma p {
+                font-size: 30px;
+            }
+
+            #getdiploma a {
+                width: 100%;
+            }
+
+            #w3_cert_badge {
+                top: -16px;
+                right: -8px;
+                width: 100px;
+            }
+
+            #getdiploma {
+                margin-bottom: 55px;
+            }
+        }
+    </style>
+
+
+
+    <hr>
+    <div id="mypagediv2" style="position:relative;text-align:center;"></div>
+    <br>
+
+</div>

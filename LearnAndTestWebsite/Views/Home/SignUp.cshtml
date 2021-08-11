@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Home/Demo.cshtml";
+}
+
+<style>
+    @@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+    @@import url('../../Content/signup.css');
+    @@import url('../../Content/formhack.css');
+</style>
+<div class="container">
+    @using(Html.BeginForm("SignUp", "Home", FormMethod.Post, new { @id = "registration", @class = "registration" })) {
+        <h1>Sign up</h1>
+
+        <label for="username">
+            <span>Username</span>
+
+            @Html.TextBox("Username", "", new { @id = "username", @minlength = "3", @required = true })
+            @*<input type="text" id= minlength="3" required>*@
+            <span style="color:red;">@ViewBag.userExist</span>
+            <ul class="input-requirements">
+                <li>At least 3 characters long</li>
+                <li>Must only contain letters and numbers (no special characters)</li>
+            </ul>
+        </label>
+
+        <label for="password">
+            <span>Password</span>
+            @Html.TextBox("Password", "", new { @id = "password", @minlength = "8", @maxlength = "100", @required = true, @type = "password" })
+            @*<input type="password" id="password" maxlength="100" minlength="8" required>*@
+
+            <ul class="input-requirements">
+                <li>At least 8 characters long (and less than 100 characters)</li>
+                <li>Contains at least 1 number</li>
+                <li>Contains at least 1 lowercase letter</li>
+                <li>Contains at least 1 uppercase letter</li>
+                @*<li>Contains a special character (e.g. @@ !)</li>*@
+            </ul>
+        </label>
+
+        <label for="password_repeat">
+            <span>Repeat Password</span>
+            <input type="password" id="password_repeat" maxlength="100" minlength="8" required>
+        </label>
+        <label for="user">
+            <span>Email</span>
+            @Html.TextBox("Email", "", new { @id = "email", @required = true })
+            @*<input type="password" id="password" maxlength="100" minlength="8" required>*@
+            <span style="color:red;">@ViewBag.emailInvalid</span>
+        </label>
+        
+        <br>
+        <input type="submit" value="Sign up for free">
+    }
+</div>
+@if(ViewBag.success == true) {
+    <script>alert("Sign Up Successfully")</script>
+}
+<script src="~/Scripts/signup.js"></script>

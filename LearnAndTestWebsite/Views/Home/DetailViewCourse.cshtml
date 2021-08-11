@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "DetailViewCourse";
+    Layout = "~/Views/Home/Demo.cshtml";
+}
+@using Group3_Project.Models;
+@{ IEnumerable<Content> contents = (IEnumerable<Content>)ViewBag.listC;}
+@{ IEnumerable<Lesson> lessons = (IEnumerable<Lesson>)ViewBag.listL;}
+<div class="main">
+
+    @foreach (var item in contents)
+    {
+    <div class="detail">
+        <h1>@item.Title</h1>
+        <p>@Html.Raw(item.Contents)</p>
+
+
+        <br>
+    </div>
+        @Html.Raw(item.Example)
+    }
+
+
+    <h2>Quiz Test</h2>
+    <form action="Test" method="post">
+
+        <p><a href="Test?lessid=@ViewBag.loadID" class="ws-btn ws-green w3-round w3-large" style="width:200px;padding:7px 18px">Start Quiz Test</a></p>
+    </form>
+</div>
+

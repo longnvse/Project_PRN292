@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Home/Demo.cshtml";
+}
+@using Group3_Project.Models;
+@{ IEnumerable<Question> questions = (IEnumerable<Question>)ViewBag.listQ;}
+@{ IEnumerable<Answer> answers = (IEnumerable<Answer>)ViewBag.listA;}
+<style>
+    .radiocontainer {
+        background-color: #E7E9EB;
+        display: block;
+        /*position: page;*/
+        padding: 10px 10px 10px 50px;
+        margin-bottom: 1px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+</style>
+
+<div class="w3-col l10 m12" id="main">
+    <div id="mainLeaderboard" style="overflow:hidden;">
+        <div id="snhb-main_leaderboard-0"></div>
+
+    </div>
+
+    <h1>C# Quiz</h1>
+
+    <div id="quizmain">
+        <div id="quizcontainer">
+
+            <script>
+                function clickRadio(elmnt) {
+                    var n, i, x;
+                    n = elmnt.id;
+                    for (i = 1; i < 5; i++) {
+                        x = document.getElementById("label" + i);
+                        if (x) { x.className = x.className.replace(" checkedlabel", ""); }
+                    }
+                    document.getElementById("label" + n).className += " checkedlabel";
+                }
+                function clickNextButton(n) {
+                    submitAnswer(n + 1);
+                }
+                function submitAnswer(n) {
+                    var f = document.getElementById("quizform");
+                    f["nextnumber"].value = n;
+                    f.submit();
+                }
+                function startTimer() {
+                    var tobj = document.getElementById("timespent")
+                    var t = "4:12";
+                    var s = 12;
+                    var d = new Date();
+                    var timeint = setInterval(function () {
+                        s += 1;
+                        d.setMinutes("4");
+                        d.setSeconds(s);
+                        min = d.getMinutes();
+                        sec = d.getSeconds();
+                        if (sec < 10) sec = "0" + sec;
+                        document.getElementById("timespent").value = min + ":" + sec;
+                    }, 1000);
+                    tobj.value = t;
+                }
+                if (window.addEventListener) {
+                    window.addEventListener("load", startTimer);
+                } else if (window.attachEvent) {
+                    window.attachEvent("onload", startTimer);
+                }
+
+            </script>
+            @using (Html.BeginForm("Result", "Home", FormMethod.Post))
+            {
+                foreach (var item in questions)
+                {
+                    @*<a style="font-weight:bold;font-size:25px;" name="qid">Question @item.questionId</a>*@
+                    <p>@item.questionName</p>
+                    foreach (var o in answers)
+                    {
+                        if (o.quesid == item.questionId)
+                        {
+                            <label class="radiocontainer" id="label4">
+                                <input type="radio" value="@o.answerId" name="@item.questionId" id="4">@o.answerName
+                            </label>
+
+                            <br>
+                        }
+                    }
+                    <br><br>
+                }
+                <br>
+                <input type="submit" class="ws-btn ws-green w3-round w3-large" style="width:200px;padding:7px 18px" value="Submit">
+                <input type="text" value="@ViewBag.lid" name="lessid" style="display:none;">
+            }
+
+
+
+
+        </div>
+    </div>
+    <hr>
+    <style>
+
+
+        #w3_cert_badge {
+            position: absolute;
+            right: 5%;
+            width: 220px;
+            transform: rotate(10deg);
+            bottom: -20%;
+        }
+
+        #w3_cert_arrow {
+            position: absolute;
+            right: 220px;
+            width: 220px;
+            transform: rotate(10deg);
+            bottom: 0;
+            z-index: 1;
+        }
+
+        #getdiploma {
+            position: relative;
+            padding: 0 60px 50px 60px;
+            margin-bottom: 125px;
+            border-radius: 16px;
+            background-color: #282A35;
+            color: #FFC0C7;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+            #getdiploma h2 {
+                font-size: 50px;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                font-family: 'Source Sans Pro', sans-serif
+            }
+
+            #getdiploma p {
+                font-size: 42px;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                font-family: 'Source Sans Pro', sans-serif
+            }
+
+            #getdiploma a {
+                border-radius: 50px;
+                margin-top: 50px;
+                font-size: 18px;
+                background-color: #04AA6D;
+                padding: 17px 55px
+            }
+
+                #getdiploma a:hover,
+                #getdiploma a:active {
+                    background-color: #059862 !important;
+                }
+
+        @@media screen and (max-width: 1442px) {
+            #w3_cert_arrow {
+                right: 212px;
+                bottom: -15px;
+            }
+        }
+
+
+        @@media screen and (max-width: 1202px) {
+            #w3_cert_arrow {
+                display: none;
+            }
+        }
+
+        @@media screen and (max-width: 992px) {
+            #w3_cert_arrow {
+                display: block;
+            }
+        }
+
+
+        @@media screen and (max-width: 800px) {
+            #w3_cert_arrow {
+                display: none;
+            }
+
+            #getdiploma h2 {
+                font-size: 44px;
+            }
+
+            #getdiploma p {
+                font-size: 30px;
+            }
+
+            #getdiploma a {
+                width: 100%;
+            }
+
+            #w3_cert_badge {
+                top: -16px;
+                right: -8px;
+                width: 100px;
+            }
+
+            #getdiploma {
+                margin-bottom: 55px;
+            }
+        }
+    </style>
+
+
+
+    <hr>
+    <div id="mypagediv2" style="position:relative;text-align:center;"></div>
+    <br>
+
+</div>

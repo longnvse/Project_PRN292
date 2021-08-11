@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "ViewResult";
+    Layout = "~/Views/Home/Demo.cshtml";
+}
+@using Group3_Project.Models;
+@{ IEnumerable<Question> questions = (IEnumerable<Question>)ViewBag.listQResult;}
+@{ IEnumerable<Answer> answers = (IEnumerable<Answer>)ViewBag.listAResult;}
+@{ List<int> listA = (List<int>)Session["listAnswer"];}
+<div class="w3-col l10 m12" id="main">
+    <div id="mainLeaderboard" style="overflow:hidden;">
+        <!-- MainLeaderboard-->
+        <!--<pre>main_leaderboard, all: [728,90][970,90][320,50][468,60]</pre>-->
+        <div id="snhb-main_leaderboard-0"></div>
+        <!-- adspace leaderboard -->
+        <style>
+            .radiocontainer {
+                background-color: #E7E9EB;
+                display: block;
+                padding: 10px 10px 10px 50px;
+                margin-bottom: 1px;
+                cursor: pointer;
+                font-size: 18px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                word-wrap: break-word;
+            }
+
+                /* Hide the browser's default radio button */
+                .radiocontainer input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+
+            /* Create a custom radio button */
+            .checkmark {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                height: 19px;
+                width: 19px;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+            .checkedlabel {
+                background-color: #ddd;
+            }
+            /* On mouse-over, add a grey background color */
+            .radiocontainer:hover input ~ .checkmark {
+                /*nothing*/
+            }
+
+            .radiocontainer:hover {
+                background-color: #ddd;
+            }
+
+            /* When the radio button is checked, add a blue background */
+            .radiocontainer input:checked ~ .checkmark {
+                background-color: #2196F3;
+            }
+
+            /* Create the indicator (the dot/circle - hidden when not checked) */
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            /* Show the indicator (dot/circle) when checked */
+            .radiocontainer input:checked ~ .checkmark:after {
+                display: block;
+            }
+            /* Style the indicator (dot/circle) */
+            .radiocontainer .checkmark:after {
+                top: 6px;
+                left: 6px;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: white;
+            }
+        </style>
+    </div>
+    <div id="quizmain">
+        <div id="quizcontainer">
+            <h1>View Results</h1>
+            <p>@ViewBag.totalCorrect of @ViewBag.totalQ</p>
+            <h3>@ViewBag.persenResult% Correct:</h3>
+            <hr>
+            @foreach(var item in questions) {
+                <h3>@item.questionName</h3>
+                foreach(var o in answers) {
+                    if(o.quesid == item.questionId) {
+                        if(o.isAswer == false) {
+                            <label class="radiocontainer" id="label4">
+                                <input type="radio" name="@item.questionId" id="4">@o.answerName
+                                @if(listA.Contains(o.answerId)) {
+                                    <a style="float: right;color:red">Your Answer</a>
+                                }
+                            </label>
+                        } else {
+                            <label class="radiocontainer" id="label4">
+                                <input type="radio" name="@item.questionId" id="4">@o.answerName
+                                <a style="float: right;color:darkgreen">Correct Answer</a>
+                            </label>
+                        }
+                        <br>
+                    }
+                }
+                <br><br>
+
+            }
+
+
+            <input type="button" class="ws-btn quizresultbtn" value="Back to Quizzes"
+                   onclick="location = 'DetailViewCourse?lessid=@ViewBag.lesid'">
+        </div>
+    </div>
+    <hr>
+    <div id="mypagediv2" style="position:relative;text-align:center;"></div>
+    <br>
+
+</div>
+
+
